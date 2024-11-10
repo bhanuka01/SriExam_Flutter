@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import 'newui/homenew.dart';
+import 'newui/mainhome.dart';
 import 'screen/homeScreen.dart';
 
 void main() async {
@@ -23,18 +25,18 @@ void main() async {
     // ),
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: Mainhome(),
       // home: TodoApp(),
     ),
   );
 }
 
 /// Represents Homepage for Navigation
-class MyWidget1 extends StatelessWidget {
-  const MyWidget1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
-  }
-}
+// class MyWidget1 extends StatelessWidget {
+//   const MyWidget1({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const MaterialApp(home: Homenew());
+//   }
+// }

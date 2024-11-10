@@ -1,9 +1,11 @@
-import 'package:al_app_api/model.dart/Home/picLink.dart';
+// import 'package:al_app_api/model.dart/Home/picLink.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../admob/admob.dart';
 // import '../../model.dart/Home/homeBack.dart';
+// import '../../flutterflow/flutter_flow_theme.dart';
 import '../../model.dart/Home/imageModel.dart';
 
 class Maths extends StatefulWidget {
@@ -23,11 +25,13 @@ class _MathsState extends State<Maths> {
   late BannerAd bannerAd;
   bool isloadad = false;
   // var unitid = "ca-app-pub-3940256099942544/6300978111";
+  // var unitid1 = "ca-app-pub-6429842662800808/4457017429";
 
   initbannerad() {
     bannerAd = BannerAd(
-        size: AdSize.fullBanner,
+        size: AdSize.largeBanner,
         adUnitId: AdHelper.unitid,
+        // adUnitId: unitid1,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
             setState(() {
@@ -46,75 +50,129 @@ class _MathsState extends State<Maths> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // decoration: const BoxDecoration(
-      //   color: AppColor.sub3,
-      // image: DecorationImage(
-      //   image: AssetImage(AbImage1.subject),
-      //   fit: BoxFit.cover,
-      // ),
-      // ),
+
+      appBar:AppBar(
+        title: Text(
+          'Sri Exam',
+          style: GoogleFonts.inter(
+
+            fontSize: 35,
+            fontWeight: FontWeight.w900,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colorlab.transparent,
+
+      ),
 
 
-      backgroundColor: Colorlab.darkBlue,
+      backgroundColor: Colors.white,
         body: Container(
-          // decoration: const BoxDecoration(
-          //   image: DecorationImage(
-          //       image: AssetImage(
-          //         "assets/svg/77.jpg",
-          //       ),
-          //       fit: BoxFit.cover
-          //   ),
-          // ),
+          padding: const EdgeInsets.all(10),
+
           child: SafeArea(
             child: Column(
+
               children: [
+
                 Container(
-                  alignment: Alignment.topCenter,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
+                  decoration: BoxDecoration(
+                    color: const Color(0xff00011d),
+                    borderRadius: BorderRadius.circular(10),
+
+                    // ),
+                  ),
+                  // height: MediaQuery.of(context).size.height/2,
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(25),
-                              child: Image.network(
-                                PicLink_23_07_01.maths,
-                                height: 200,
-                                width: 400,
-                                // height: MediaQuery.of(context).size.height / 2.4,
-                                fit: BoxFit.cover,
-                                loadingBuilder: (BuildContext context,
-                                    Widget child,
-                                    ImageChunkEvent? loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return CircularProgressIndicator(
-                                    value: loadingProgress.expectedTotalBytes !=
-                                            null
-                                        ? loadingProgress.cumulativeBytesLoaded /
-                                            loadingProgress.expectedTotalBytes!
-                                        : null,
-                                  );
-                                },
+                        Text("Subject",
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
                               ),
                             )),
-
                       ],
                     ),
                   ),
                 ),
-                Expanded(
-                  child: GridView.count(
-                    childAspectRatio: MediaQuery.of(context).size.width /
-                        (MediaQuery.of(context).size.height / 2),
-                    primary: false,
-                    padding: const EdgeInsets.all(5),
-                    crossAxisSpacing: 1,
-                    mainAxisSpacing: 3,
-                    crossAxisCount: 2,
-                    children: SubjectList.maths,
-                  ),
+                const SizedBox(
+                  height: 20,
                 ),
+                Expanded( child:
+                    GridView.builder(
+                      key: const PageStorageKey<String>('mathsGrid'), // Key for preserving scroll position
+                      scrollDirection: Axis.vertical, // For horizontal scrolling
+                      itemCount: SubjectList.maths.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, // Number of items in each row (adjust as needed)
+                        mainAxisSpacing: 8.0,  // Spacing between rows
+                        crossAxisSpacing: 8.0, // Spacing between columns
+                        childAspectRatio: 1.0,  // Adjust aspect ratio of grid items
+                      ),
+                      itemBuilder: (context, index) {
+                        return SubjectList.maths[index]; // Your existing widgets in SubjectList.maths
+                      },
+                    )
+
+                  // child:ListView(
+                  //   scrollDirection: Axis.horizontal,
+                  //
+                  //   children: SubjectList.maths,
+                  // ),
+                ),
+                // Container(
+                //   // height: MediaQuery.of(context).size.height,
+                //
+                //
+                //   decoration: BoxDecoration(
+                //
+                //     // color: Colors.deepPurple.shade600,
+                //     borderRadius: BorderRadius.circular(20),
+                //
+                //     // ),
+                //   ),
+                //   height: MediaQuery.of(context).size.height / 4,
+                //   width: MediaQuery.of(context).size.width,
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(20.0),
+                //     child: SingleChildScrollView(
+                //       child: Column(
+                //         mainAxisAlignment: MainAxisAlignment.start,
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: [
+                //           Text(
+                //             "Level Up Your Brain:",
+                //             style: GoogleFonts.poppins(
+                //               textStyle: const TextStyle(
+                //                 fontSize: 30,
+                //                 fontWeight: FontWeight.w600,
+                //                 // color: Colors.white,
+                //               ),
+                //             ),
+                //           ),
+                //           const SizedBox(height: 10,),
+                //           Text(
+                //             "Studying unlocks new skills and ways of thinking, making you smarter! ",
+                //             style: GoogleFonts.poppins(
+                //               textStyle: const TextStyle(
+                //                 fontSize: 20,
+                //                 fontWeight: FontWeight.w400,
+                //                 // color: Colors.white,
+                //               ),
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -126,7 +184,7 @@ class _MathsState extends State<Maths> {
                 child: AdWidget(ad: bannerAd),
 
               )
-            : const SizedBox(),
+            : const SizedBox(height: 100,),
 
     );
   }

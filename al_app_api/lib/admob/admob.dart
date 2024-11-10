@@ -5,9 +5,10 @@
 //
 // }
 class AdHelper {
-  static String unitid = "ca-app-pub-6429842662800808/2335480101";
-  static String interstitialAdUnitId = "ca-app-pub-6429842662800808/8709316762";
+  static String unitid = "ca-app-pub-6429842662800808/4457017429";
+  static String interstitialAdUnitId = "ca-app-pub-6429842662800808/8196951881";
   // Admob app id  ca-app-pub-6429842662800808~9933934378
+  //google play store
 
 }
 

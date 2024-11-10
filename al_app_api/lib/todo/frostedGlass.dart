@@ -6,11 +6,10 @@ import '../model.dart/Home/imageModel.dart';
 
 class FrostedGlassBox extends StatelessWidget {
   const FrostedGlassBox(
-      {Key? key,
+      {super.key,
       required this.theWidth,
       required this.theHeight,
-      required this.theChild})
-      : super(key: key);
+      required this.theChild});
 
   final theWidth;
   final theHeight;
@@ -52,9 +51,9 @@ class FrostedGlassBox extends StatelessWidget {
                       end: Alignment.bottomRight,
                       colors: [
                         //begin color
-                        Color.fromARGB(255, 255, 255, 255).withOpacity(0.15),
+                        const Color.fromARGB(255, 255, 255, 255).withOpacity(0.15),
                         //end color
-                        Color.fromARGB(255, 255, 255, 255).withOpacity(0.1),
+                        const Color.fromARGB(255, 255, 255, 255).withOpacity(0.1),
                       ]),
                 ),
               ),
@@ -70,11 +69,10 @@ class FrostedGlassBox extends StatelessWidget {
 
 class FrostedGlassBox1 extends StatelessWidget {
   const FrostedGlassBox1(
-      {Key? key,
+      {super.key,
       // required this.theWidth,
       // required this.theHeight,
-      required this.theChild})
-      : super(key: key);
+      required this.theChild});
 
   // final theWidth;
   // final theHeight;

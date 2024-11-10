@@ -39,145 +39,155 @@ class Colorlab {
   static const Color blue = Colors.blue;
   static const Color black = Colors.black;
   static const Color red = Colors.red;
-  static const Color darkBlue = Color.fromARGB(255, 0, 1, 29);
+  static const Color darkBlue = Colors.white;
 }
+class ColorAllApp{
+  static const Color homeProfile=Color(0xff52d3d8);
+  static const Color homeBackColor=Color(0xff200e3a);
+  static const Color homeTodoButton=Color(0xff000000);
+  static const Color homeText=Color(0xff52d3d8);
+  static const List<Color> homeCardBack=[Color(0xff38419d),
+    Color(0xff3887be)];
+
+}
+
 
 class SubjectList {
   // static Widget sub = HomeModel("Bio", Bio());
-  static final List<HomeModel111> streamsub = [
-    const HomeModel111(
+  static final List<HomeSub> streamsub = [
+    const HomeSub(
       "Maths",
       Maths(),
-      "assets/new/5.jpg",
+      "assets/image/4.png",
     ),
-    const HomeModel111(
+    const HomeSub(
       "Bio",
       Biology(),
-      "assets/new/1.jpg",
+      "assets/image/1.png",
     ),
-    const HomeModel111(
+    const HomeSub(
       "Commerce",
       Commerce(),
       "assets/new/2.jpg",
     ),
-    const HomeModel111(
+    const HomeSub(
       "Tech",
       Tech(),
       "assets/new/3.jpg",
     ),
   ];
 
-  static final List<HomeModel111> biology = [
-    HomeModel111(
+  static final List<HomeSub> biology = [
+    const HomeSub(
       "Bio",
       Bio(),
       "assets/new/1.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Physics",
       Phy(),
-      "assets/new/6.jpg",
+      "assets/image/5.png",
     ),
-    HomeModel111(
+    const HomeSub(
       "Chemistry",
       Chem(),
       "assets/new/7.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Agri",
       Agry(),
-      "assets/new/9.jpg",
+      "assets/image/6.png",
     ),
   ];
-  static final List<HomeModel111> maths = [
-    HomeModel111(
+  static final List<HomeSub> maths = [
+    const HomeSub(
       "C Maths",
       Cmaths(),
-      "assets/new/5.jpg",
+      "assets/image/4.png",
     ),
-    HomeModel111(
+    const HomeSub(
       "Physics",
       Phy(),
-      "assets/new/6.jpg",
+      "assets/image/3.png",
     ),
-    HomeModel111(
+    const HomeSub(
       "Chemistry",
       Chem(),
       "assets/new/7.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "ICT",
       Ict(),
       "assets/new/8.jpg",
     ),
   ];
-  static final List<HomeModel111> commerce = [
-    HomeModel111(
+  static final List<HomeSub> commerce = [
+    const HomeSub(
       "Economics",
       Economics(),
       "assets/new/10.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Accounting",
       Accounting(),
       "assets/new/6.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Busi.Studies",
       BusinessStudies(),
       "assets/new/12.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "ICT",
       Ict(),
       "assets/new/8.jpg",
     ),
   ];
-  static final List<HomeModel111> tech = [
-    HomeModel111(
+  static final List<HomeSub> tech = [
+    const HomeSub(
       "SFT",
       SFT(),
       "assets/new/13.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "BST",
       BST(),
       "assets/new/14.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "ICT",
       Ict(),
       "assets/new/8.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Engine T",
       Engineering(),
       "assets/new/15.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Civic",
       Civic(),
       "assets/new/16.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Electronic T",
       Electronic(),
       "assets/new/17.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Mechanical T",
       Mechanical(),
       "assets/new/18.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Agri",
       Agry(),
       "assets/new/9.jpg",
     ),
-    HomeModel111(
+    const HomeSub(
       "Economics",
       Economics(),
-      "assets/new/10.jpg",
+      "assets/image/6.jpg",
     ),
   ];
 }

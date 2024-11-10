@@ -1,10 +1,10 @@
 import 'package:al_app_api/admob/admob.dart';
 import 'package:al_app_api/model.dart/Home/imageModel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:msh_checkbox/msh_checkbox.dart';
 import 'frostedGlass.dart';
 
 class TodoApp extends StatefulWidget {
@@ -22,7 +22,7 @@ class _TodoAppState extends State<TodoApp> {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: TodoListScreen(),
+      home: const TodoListScreen(),
     );
   }
 }
@@ -52,7 +52,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
 
   initbannerad() {
     bannerAd = BannerAd(
-        size: AdSize.fullBanner,
+        size: AdSize.largeBanner,
         adUnitId: AdHelper.unitid,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
@@ -62,7 +62,7 @@ class _TodoListScreenState extends State<TodoListScreen> {
           },
           onAdFailedToLoad: (ad, error) {
             ad.dispose();
-            print(error);
+            // print(error);
           },
         ),
         request: const AdRequest());
@@ -92,78 +92,154 @@ class _TodoListScreenState extends State<TodoListScreen> {
       }
     });
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         title: const Text('Todo List'),
+
       ),
       body: ListView.builder(
         itemCount: todos.length,
         itemBuilder: (BuildContext context, int index) {
-          return Slidable(
-            endActionPane: ActionPane(
-              motion: const BehindMotion(),
-              children: [
-                SlidableAction(
-                  spacing: 5,
-                  onPressed: (context) {
-                    setState(() {
-                      todos.removeAt(index);
-                      _saveTodoList();
-                    });
-                  },
-                  backgroundColor: Colorlab.red,
-                  icon: Icons.delete,
-                  label: 'Delete',
-                ),
-              ],
-            ),
-            // actionPane: SlidableDrawerActionPane(),
-            // actionExtentRatio: 0.25,
+          return Padding(
+            padding: const EdgeInsets.only(right: 5,left: 5,top: 5),
+            child: ClipRRect(
 
-            child: Container(
-              color: Color.fromARGB(255, 63, 63, 63),
-              margin: EdgeInsets.only(
-                top: 5,
-              ),
-              child: ListTile(
-                leading: StatefulBuilder(
-                  builder: (BuildContext context, StateSetter setState) {
-                    return Theme(
-                      data: Theme.of(context).copyWith(
-                        unselectedWidgetColor: Colorlab.white,
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+
+                color: Colors.teal,
+                // margin: const EdgeInsets.only(top: 5),
+                child: ListTile(
+                    // leading: StatefulBuilder(
+                    //   builder: (BuildContext context, StateSetter setState) {
+                    //     return Theme(
+                    //       data: Theme.of(context).copyWith(
+                    //         unselectedWidgetColor: Colorlab.white,
+                    //       ),
+                    //       child: Checkbox(
+                    //         // activeColor: Colors.amber,
+                    //         // checkColor: Colors.amber,
+                    //         // focusColor: Colors.amber,
+                    //         // hoverColor: Colors.amber,
+                    //         value: todos[index].isDone,
+                    //         onChanged: (bool? value) {
+                    //           setState(() {
+                    //             todos[index].isDone = value!;
+                    //             _saveTodoList();
+                    //             _loadTodoList();
+                    //           });
+                    //         },
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
+                    leading: MSHCheckbox(
+                      size: 35,
+                      value: todos[index].isDone,
+                      colorConfig: MSHColorConfig.fromCheckedUncheckedDisabled(
+                        checkedColor: Colors.tealAccent,
                       ),
-                      child: Checkbox(
-                        // activeColor: Colors.amber,
-                        // checkColor: Colors.amber,
-                        // focusColor: Colors.amber,
-                        // hoverColor: Colors.amber,
-                        value: todos[index].isDone,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            todos[index].isDone = value!;
-                            _saveTodoList();
-                            _loadTodoList();
-                          });
-                        },
+                      style: MSHCheckboxStyle.fillScaleCheck,
+                      onChanged: (value) {
+                        setState(() {
+                          todos[index].isDone = value;
+                          _saveTodoList();
+                          _loadTodoList();
+                        });
+                      },
+                    ),
+                    title: Text(
+                      todos[index].title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 25,
+                        color: Colorlab.white,
                       ),
-                    );
-                  },
-                ),
-                title: Text(
-                  todos[index].title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 25,
-                    color: Colorlab.white,
-                  ),
-                ),
+                    ),
+                    trailing: IconButton(
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          todos.removeAt(index);
+                          _saveTodoList();
+                        });
+                      },
+                    )),
               ),
             ),
           );
+          //   Slidable(
+          //   endActionPane: ActionPane(
+          //     motion: const BehindMotion(),
+          //     children: [
+          //       SlidableAction(
+          //         spacing: 5,
+          //         onPressed: (context) {
+          //           setState(() {
+          //             todos.removeAt(index);
+          //             _saveTodoList();
+          //           });
+          //         },
+          //         backgroundColor: Colorlab.red,
+          //         icon: Icons.delete,
+          //         label: 'Delete',
+          //       ),
+          //     ],
+          //   ),
+          //   // actionPane: SlidableDrawerActionPane(),
+          //   // actionExtentRatio: 0.25,
+          //
+          //   child: Container(
+          //     color: const Color.fromARGB(255, 63, 63, 63),
+          //     margin: const EdgeInsets.only(
+          //       top: 5,
+          //     ),
+          //     child: ListTile(
+          //       leading: StatefulBuilder(
+          //         builder: (BuildContext context, StateSetter setState) {
+          //           return Theme(
+          //             data: Theme.of(context).copyWith(
+          //               unselectedWidgetColor: Colorlab.white,
+          //             ),
+          //             child: Checkbox(
+          //               // activeColor: Colors.amber,
+          //               // checkColor: Colors.amber,
+          //               // focusColor: Colors.amber,
+          //               // hoverColor: Colors.amber,
+          //               value: todos[index].isDone,
+          //               onChanged: (bool? value) {
+          //                 setState(() {
+          //                   todos[index].isDone = value!;
+          //                   _saveTodoList();
+          //                   _loadTodoList();
+          //                 });
+          //               },
+          //             ),
+          //           );
+          //         },
+          //       ),
+          //       title: Text(
+          //         todos[index].title,
+          //         style: const TextStyle(
+          //           fontWeight: FontWeight.w800,
+          //           fontSize: 25,
+          //           color: Colorlab.white,
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.tealAccent,
+        // foregroundColor: Colors.black,
         onPressed: () {
           _addTodoItem();
         },

@@ -1,6 +1,8 @@
-import 'package:al_app_api/model.dart/apimodel/getRow.dart';
+import 'package:al_app_api/model.dart/apimodel/getrow.dart';
+// import 'package:card_loading/card_loading.dart';
 
 import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'package:http/http.dart' as http;
@@ -10,9 +12,12 @@ import '../../admob/admob.dart';
 import '../../apijson/cmathsjsn.dart';
 import '../../model.dart/Home/homeBack.dart';
 // import '../../model.dart/Home/homeModel.dart';
+import '../../model.dart/Home/homeModel.dart';
 import '../../model.dart/Home/imageModel.dart';
 
 class Economics extends StatefulWidget {
+  const Economics({super.key});
+
   @override
   State<Economics> createState() => _CmathsState();
 }
@@ -55,7 +60,7 @@ class _CmathsState extends State<Economics> {
 
   initbannerad() {
     bannerAd = BannerAd(
-        size: AdSize.fullBanner,
+        size: AdSize.largeBanner,
         adUnitId: AdHelper.unitid,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
@@ -65,10 +70,10 @@ class _CmathsState extends State<Economics> {
           },
           onAdFailedToLoad: (ad, error) {
             ad.dispose();
-            print(error);
+            // print(error);
           },
         ),
-        request: AdRequest());
+        request: const AdRequest());
     bannerAd.load();
   }
 
@@ -85,57 +90,69 @@ class _CmathsState extends State<Economics> {
       // ),
       thechild: SafeArea(
         child: Scaffold(
-          backgroundColor: Colorlab.darkBlue,
+          appBar: AppBar(
+            title: const TitleYear(),
+          ),
+          backgroundColor: Colorlab.white,
           // ),
           body: isDataLoaded
               ? errorMessage.isNotEmpty
-              ? Text(errorMessage)
-              : paper.data.isEmpty
-              ? const Text('No Data')
-              : Row(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: paper.data.length,
-                  itemBuilder: (context, index) =>
-                      ChemRow1(index: index, paper: paper),
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: paper.data.length,
-                  itemBuilder: (context, index) =>
-                      ChemRow2(index: index, paper: paper),
-                ),
-              ),
-            ],
-          )
-              : Center(
-            child: Column(
-              children: const [
-                CircularProgressIndicator(
-                  color: Colorlab.white,
-                ),
-                Text(
-                  "Please wait a moment \n Connect to the internet \n Restart the app",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Colorlab.white,
+                  ? Text(errorMessage)
+                  : paper.data.isEmpty
+                      ? const Text('No Data')
+                      : Row(
+                          children: [
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: paper.data.length,
+                                itemBuilder: (context, index) =>
+                                    ChemRow1(index: index, paper: paper),
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: paper.data.length,
+                                itemBuilder: (context, index) =>
+                                    ChemRow2(index: index, paper: paper),
+                              ),
+                            ),
+                          ],
+                        )
+              :  const Center(
+                  child: Column(
+
+                    children: <Widget>[
+                      LoadingRow(),
+                      LoadingRow(),
+                      LoadingRow(),
+                      LoadingRow(),
+
+                      // CircularProgressIndicator(
+                      //   color: Colorlab.black,
+                      // ),
+                      Text(
+                        "Please wait a moment \n Connect to the internet \n Restart the app",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colorlab.black,
+                        ),
+                      )
+                    ],
                   ),
-                )
-              ],
-            ),
-          ),
+                ),
           bottomNavigationBar: isloadad
               ? SizedBox(
-            height: bannerAd.size.height.toDouble(),
-            width: bannerAd.size.width.toDouble(),
-            child: AdWidget(ad: bannerAd),
-          )
+                  height: bannerAd.size.height.toDouble(),
+                  width: bannerAd.size.width.toDouble(),
+                  child: AdWidget(ad: bannerAd),
+                )
               : const SizedBox(),
         ),
       ),
     );
   }
 }
+
+
+

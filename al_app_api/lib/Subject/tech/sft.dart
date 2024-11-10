@@ -1,4 +1,4 @@
-import 'package:al_app_api/model.dart/apimodel/getRow.dart';
+import 'package:al_app_api/model.dart/apimodel/getrow.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -10,9 +10,12 @@ import '../../admob/admob.dart';
 import '../../apijson/cmathsjsn.dart';
 import '../../model.dart/Home/homeBack.dart';
 // import '../../model.dart/Home/homeModel.dart';
+import '../../model.dart/Home/homeModel.dart';
 import '../../model.dart/Home/imageModel.dart';
 
 class BST extends StatefulWidget {
+  const BST({super.key});
+
   @override
   State<BST> createState() => _CmathsState();
 }
@@ -55,7 +58,7 @@ class _CmathsState extends State<BST> {
 
   initbannerad() {
     bannerAd = BannerAd(
-        size: AdSize.fullBanner,
+        size: AdSize.largeBanner,
         adUnitId: AdHelper.unitid,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
@@ -65,10 +68,10 @@ class _CmathsState extends State<BST> {
           },
           onAdFailedToLoad: (ad, error) {
             ad.dispose();
-            print(error);
+            // print(error);
           },
         ),
-        request: AdRequest());
+        request: const AdRequest());
     bannerAd.load();
   }
 
@@ -85,6 +88,9 @@ class _CmathsState extends State<BST> {
       // ),
       thechild: SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            title: const TitleYear(),
+          ),
           backgroundColor: Colorlab.darkBlue,
           // ),
           body: isDataLoaded
@@ -110,9 +116,13 @@ class _CmathsState extends State<BST> {
               ),
             ],
           )
-              : Center(
+              : const Center(
             child: Column(
-              children: const [
+              children: [
+                LoadingRow(),
+                LoadingRow(),
+                LoadingRow(),
+                LoadingRow(),
                 CircularProgressIndicator(
                   color: Colorlab.white,
                 ),
@@ -121,7 +131,7 @@ class _CmathsState extends State<BST> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
-                    color: Colorlab.white,
+                    color: Colorlab.black,
                   ),
                 )
               ],

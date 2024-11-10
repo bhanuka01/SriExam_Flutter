@@ -1,12 +1,10 @@
-// ignore_for_file: must_be_immutable, use_key_in_widget_constructors, unused_local_variable
-
 import 'package:al_app_api/model.dart/Home/imageModel.dart';
 import 'package:flutter/material.dart';
 
 class StremBack extends StatelessWidget {
   // const StremBack({super.key});
   Widget thechild;
-  StremBack({required this.thechild});
+  StremBack({super.key, required this.thechild});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +14,6 @@ class StremBack extends StatelessWidget {
           Expanded(
             child: Container(
               color: Colorlab.black,
-
               child: thechild,
             ),
           )
@@ -41,7 +38,7 @@ class StremBack extends StatelessWidget {
 class SubBack extends StatelessWidget {
   // const SubBack({super.key});
   Widget thechild;
-  SubBack({required this.thechild});
+  SubBack({super.key, required this.thechild});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +49,6 @@ class SubBack extends StatelessWidget {
           Expanded(
             child: Container(
               color: Colorlab.black,
-
               child: thechild,
             ),
           )
@@ -77,7 +73,7 @@ class SubBack extends StatelessWidget {
 class YearBack extends StatelessWidget {
   // const YearBack({super.key});
   Widget thechild;
-  YearBack({required this.thechild});
+  YearBack({super.key, required this.thechild});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +83,6 @@ class YearBack extends StatelessWidget {
           Expanded(
             child: Container(
               color: Colorlab.black,
-
               child: thechild,
             ),
           )

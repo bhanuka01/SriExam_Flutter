@@ -1,9 +1,10 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:al_app_api/model.dart/Home/imageModel.dart';
+// import 'package:al_app_api/model.dart/Home/imageModel.dart';
 import 'package:flutter/material.dart';
 
-import '../flutterflow/flutter_flow_theme.dart';
+// import '../flutterflow/flutter_flow_theme.dart';
 import '../model.dart/Home/picLink.dart';
 // String url ='';
 class URLInfo{
@@ -17,10 +18,10 @@ class AboutMe extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-
-
+  Color aboutColor=Colors.white;
+  Color aboutIcon=Colors.grey;
     return Scaffold(
-      backgroundColor: Colorlab.darkBlue,
+      backgroundColor: const Color(0xff020d32),
       body: SafeArea(
         top: true,
         child: Column(
@@ -45,10 +46,11 @@ class AboutMe extends StatelessWidget {
               padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
               child: Text(
                 'Bhanuka Dilshan',
-                style: FlutterFlowTheme.of(context).titleMedium.override(
-                      fontFamily: 'Inter',
+                style: GoogleFonts.inter(
+
                       fontSize: 21,
                       fontWeight: FontWeight.w800,
+                  color: aboutColor
                     ),
               ),
             ),
@@ -65,10 +67,11 @@ class AboutMe extends StatelessWidget {
                       child: Text(
                         'Information',
                         style:
-                            FlutterFlowTheme.of(context).titleMedium.override(
-                                  fontFamily: 'Inter',
+                        GoogleFonts.inter(
+
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
+                            color: aboutColor
                                 ),
                       ),
                     ),
@@ -97,8 +100,7 @@ class AboutMe extends StatelessWidget {
                                       10, 0, 0, 0),
                                   child: Icon(
                                     Icons.web_asset_rounded,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color: aboutIcon,
                                     size: 24,
                                   ),
                                 ),
@@ -110,12 +112,12 @@ class AboutMe extends StatelessWidget {
                                             10, 0, 0, 0),
                                     child: Text(
                                       'Web Site',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'Inter',
+                                      style:  GoogleFonts.inter(
+
+
                                             fontSize: 14,
                                             fontWeight: FontWeight.normal,
+                                          color: aboutColor
                                           ),
                                     ),
                                   ),
@@ -181,8 +183,7 @@ class AboutMe extends StatelessWidget {
                                       10, 0, 0, 0),
                                   child: Icon(
                                     Icons.developer_mode,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
+                                    color:aboutIcon,
                                     size: 24,
                                   ),
                                 ),
@@ -194,12 +195,11 @@ class AboutMe extends StatelessWidget {
                                             10, 0, 0, 0),
                                     child: Text(
                                       'Dev',
-                                      style: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .override(
-                                            fontFamily: 'Inter',
+                                      style:  GoogleFonts.inter(
+
                                             fontSize: 14,
                                             fontWeight: FontWeight.normal,
+                                          color:aboutColor
                                           ),
                                     ),
                                   ),
@@ -213,12 +213,11 @@ class AboutMe extends StatelessWidget {
                                     0, 0, 10, 0),
                                 child: Text(
                                   'Flutter Mobile App',
-                                  style: FlutterFlowTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                        fontFamily: 'Inter',
+                                  style:  GoogleFonts.inter(
+
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
+                                      color: aboutColor
                                       ),
                                 ),
                               ),
@@ -254,7 +253,7 @@ class AboutMe extends StatelessWidget {
                                 10, 0, 0, 0),
                             child: Icon(
                               Icons.school,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color:aboutIcon,
                               size: 24,
                             ),
                           ),
@@ -265,12 +264,11 @@ class AboutMe extends StatelessWidget {
                                   10, 0, 0, 0),
                               child: Text(
                                 'Study',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: 'Inter',
+                                style: GoogleFonts.inter(
+
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
+                                    color: aboutColor
                                     ),
                               ),
                             ),
@@ -284,12 +282,11 @@ class AboutMe extends StatelessWidget {
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                           child: Text(
                             'Mathematics & Statistics\n(UOR)',
-                            style: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: 'Inter',
+                            style: GoogleFonts.inter(
+
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
+                                color: aboutColor
                                 ),
                           ),
                         ),
@@ -322,7 +319,7 @@ class AboutMe extends StatelessWidget {
                                 10, 0, 0, 0),
                             child: Icon(
                               Icons.email,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: aboutIcon,
                               size: 24,
                             ),
                           ),
@@ -333,12 +330,11 @@ class AboutMe extends StatelessWidget {
                                   10, 0, 0, 0),
                               child: Text(
                                 'Send Mail Any issue ',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                  fontFamily: 'Inter',
+                                style: GoogleFonts.inter(
+
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
+                                    color: aboutColor
                                 ),
                               ),
                             ),
@@ -395,7 +391,7 @@ class AboutMe extends StatelessWidget {
                                 10, 0, 0, 0),
                             child: Icon(
                               Icons.verified_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color:aboutIcon,
                               size: 24,
                             ),
                           ),
@@ -406,12 +402,11 @@ class AboutMe extends StatelessWidget {
                                   10, 0, 0, 0),
                               child: Text(
                                 'App Version',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                  fontFamily: 'Inter',
+                                style:  GoogleFonts.inter(
+
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
+                                    color: aboutColor
                                 ),
                               ),
                             ),
@@ -424,13 +419,12 @@ class AboutMe extends StatelessWidget {
                           padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                           child: Text(
-                            '1.0.0',
-                            style: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                              fontFamily: 'Inter',
+                            '2.0',
+                            style: GoogleFonts.inter(
+
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
+                                color: aboutColor
                             ),
                           ),
                         ),
@@ -444,5 +438,8 @@ class AboutMe extends StatelessWidget {
         ),
       ),
     );
+
   }
+
+
 }

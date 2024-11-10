@@ -1,4 +1,4 @@
-import 'package:al_app_api/model.dart/apimodel/getRow.dart';
+import 'package:al_app_api/model.dart/apimodel/getrow.dart';
 
 import 'package:flutter/material.dart';
 import 'package:al_app_api/model.dart/Home/imageModel.dart';
@@ -9,8 +9,13 @@ import 'package:http/http.dart' as http;
 import '../../admob/admob.dart';
 import '../../apijson/cmathsjsn.dart';
 import '../../model.dart/Home/homeBack.dart';
+// import 'package:card_loading/card_loading.dart';
+
+import '../../model.dart/Home/homeModel.dart';
 
 class Cmaths extends StatefulWidget {
+  const Cmaths({super.key});
+
   @override
   State<Cmaths> createState() => _CmathsState();
 }
@@ -53,7 +58,7 @@ class _CmathsState extends State<Cmaths> {
 
   initbannerad() {
     bannerAd = BannerAd(
-        size: AdSize.fullBanner,
+        size: AdSize.largeBanner,
         adUnitId: AdHelper.unitid,
         listener: BannerAdListener(
           onAdLoaded: (ad) {
@@ -63,10 +68,10 @@ class _CmathsState extends State<Cmaths> {
           },
           onAdFailedToLoad: (ad, error) {
             ad.dispose();
-            print(error);
+            // print(error);
           },
         ),
-        request: AdRequest());
+        request: const AdRequest());
     bannerAd.load();
   }
 
@@ -79,7 +84,11 @@ class _CmathsState extends State<Cmaths> {
       //   fit: BoxFit.cover,
       // )),
       thechild: SafeArea(
+
         child: Scaffold(
+          appBar: AppBar(
+            title: const TitleYear(),
+          ),
           backgroundColor: Colorlab.darkBlue,
           // ),
           body: isDataLoaded
@@ -108,15 +117,15 @@ class _CmathsState extends State<Cmaths> {
               : const Center(
                   child: Column(
                     children: [
-                      CircularProgressIndicator(
-                        color: Colorlab.white,
-                      ),
+                      LoadingRow(),
+                      LoadingRow(),
+                      LoadingRow(),
                       Text(
                         "Please wait a moment \n Connect to the internet \n Restart the app",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 30,
-                          color: Colorlab.white,
+                          color: Colorlab.black,
                         ),
                       )
                     ],
@@ -135,6 +144,6 @@ class _CmathsState extends State<Cmaths> {
   }
 }
 
-class _AbImage {
-  // static const String image22 = "assets/image/b3.png";
-}
+// class _AbImage {
+//   // static const String image22 = "assets/image/b3.png";
+// }

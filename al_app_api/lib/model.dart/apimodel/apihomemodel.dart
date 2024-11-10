@@ -10,6 +10,8 @@ import '../../apijson/cmathsjsn.dart';
 
 
 class Home1 extends StatefulWidget {
+  const Home1({super.key});
+
   // const Home1({super.key});
 
   // late String url;
@@ -92,8 +94,8 @@ class _Home1State extends State<Home1> {
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: AssetImage("assets/image/w1.jpg"),
+            image: const DecorationImage(
+              image: const AssetImage("assets/image/w1.jpg"),
               fit: BoxFit.cover,
             )),
         child: ListTile(
