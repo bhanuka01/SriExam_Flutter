@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:al_app_api/newui/yearsnew.dart';
+import 'package:al_app_api/newui/yearsnew02.dart';
+import 'package:al_app_api/newui/yearsnew03.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -11,6 +14,7 @@ import 'Streamnew.dart';
 
 class Homenew extends StatefulWidget {
   final String url1;
+
   // const Homenew({super.key});
   const Homenew(this.url1,  {super.key});
 
@@ -42,8 +46,7 @@ class _HomenewState extends State<Homenew> {
   bool isDataLoaded = false;
 
   Future<void> fetchdata() async {
-    const url =
-        "https://raw.githubusercontent.com/bhanuka01/alapi/main/newui/home.json";
+    var url = widget.url1;
     final uri = Uri.parse(url);
     var response = await http.get(uri);
     if (response.statusCode == 200) {
@@ -57,159 +60,241 @@ class _HomenewState extends State<Homenew> {
       });
     } else {}
   }
+
   @override
   Widget build(BuildContext context) {
-
-    return isDataLoaded?
-      Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        title: Text(
-          "Sri Exam",
-          style: GoogleFonts.inter(
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.w900,
-              color: Colors.black,
-              fontSize: 30,
+    return isDataLoaded
+        ? Scaffold(
+            backgroundColor: Color(0xfffef5ec),
+            appBar: AppBar(
+              foregroundColor: Color(0xff464743),
+              title: Text(
+                users[0]['title'],
+                style: GoogleFonts.inter(
+                  textStyle: const TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 30,
+                  ),
+                ),
+              ),
+              backgroundColor: Color(0xfffef5ec),
             ),
-          ),
-        ),
-        backgroundColor: Colors.white,
-      ),
-
-      body: ListView(
-        children: [
-          ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              final user = users[index];
-              final head = user['head'];
-              final url = user['url'];
-              final img = user['img'];
-
-              // Define a list of colors to cycle through
-              final colors = [
-                Colors.blueAccent,
-                Colors.greenAccent,
-                Colors.orangeAccent,
-                Colors.purpleAccent,
-                Colors.redAccent,
-                // Add more colors as needed
-              ];
-
-              // Calculate the color index based on the current index
-              final colorIndex = index % colors.length;
-              final cardColor = colors[colorIndex];
-              return GestureDetector(
-                onTap: () {
-                  // Navigate first, THEN show the ad if it's loaded
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.fade,
-                      child: Streamnew(url),
-                      // Booknew(url, img),
-                    ),
-                  ).then((_) {
-                    // .then() executes after returning from Booknew
-                    // if (isloadfull) {
-                    //   interstitialAd.show();
-                    //   isloadfull =
-                    //   false; // Reset the flag to prevent multiple ad shows
+            body: ListView(
+              children: [
+                ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    final user = users[index];
+                    final head = user['head'];
+                    final subtitle=user['subtitle'];
+                    // final head = "user";
+                    final url = user['url'];
+                    // final img = user['img'];
+                    final body = user['body'];
+                    Widget destination;
+                    // if (body == "2") {
+                    //   destination = Yearsnew(url);
                     // } else {
-                    //   // print("Interstitial ad not loaded yet");
+                    //   destination = Streamnew(url);
                     // }
-                  });
-                },
-                // ... rest of your GestureDetector
+                    if (body == "1") {
+                      destination = Homenew(url); //
+                    } else if (body == "2") {
+                      destination = Streamnew(url); //
+                    } else if (body == "3") {
+                      destination = Yearsnew02(url); //
+                    } else {
+                      destination = Yearsnew03(url); //
+                    }
 
-                // return GestureDetector(
-                //   onTap: () {
-                //     if (isloadfull) {
-                //       interstitialAd.show();
-                //     } else {
-                //       print("Interstitial ad not loaded yet");
-                //     }
-                //     Navigator.push(
-                //       context,
-                //       PageTransition(
-                //         type: PageTransitionType.fade,
-                //         child: Booknew(url, img),
-                //       ),
-                //     );
-                //   },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
+                    // Define a list of colors to cycle through
+                    final colors = [
+                      Color(0xffdae1eb),
+                      Color(0xffdde2db),
+                      Color(0xffded2e0),
+                      Color(0xfff5dfc7),
+
+                      Color(0xfff5cec7),
+                      // Add more colors as needed
+                    ];
+                    final textColor = [
+                      Color(0xff6782af),
+                      Color(0xff6b8e7d),
+                      Color(0xff85779a),
+                      Color(0xffd69958),
+
+                      Color(0xffdc7966),
+                      // Add more colors as needed
+                    ];
+
+                    // Define a list of icons to cycle through
+                    final icons = [
+                      Icons.school,
+                      Icons.book,
+                      Icons.science,
+                      Icons.psychology,
+                      Icons.lightbulb,
+                    ];
+
+                    // Calculate the color index based on the current index
+                    final colorIndex = index % colors.length;
+                    final textColorIndex = index % textColor.length;
+                    final iconIndex = index % icons.length;
+                    final cardColor = colors[colorIndex];
+                    final cardTextColor = textColor[textColorIndex];
+                    final cardIcon = icons[iconIndex];
+
+                    return GestureDetector(
+                      onTap: () {
+                        // Navigate first, THEN show the ad if it's loaded
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.fade,
+                            child: destination,
+                            // Booknew(url, img),
+                          ),
+                        ).then((_) {});
+                      },
+                      // ... rest of your GestureDetector
+
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          color: cardColor,
-                          height:
-                          MediaQuery.of(context).size.height / 6,
-                          child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceEvenly,
+                          width: MediaQuery.of(context).size.width / 2.5,
+                          height: MediaQuery.of(context).size.height / 7,
+                          // color: cardColor,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: cardColor, // Border color
+                              width: 1, // Border width
+                            ),
+                            color: cardColor,
+                            // boxShadow: [
+                            //   BoxShadow(
+                            //     color: Colors.black.withOpacity(0.5), // Shadow color
+                            //     spreadRadius: 3, // How far the shadow should extend
+                            //     blurRadius:20, // How blurry the shadow should be
+                            //     offset: Offset(5, 10), // X, Y offset of the shadow
+                            //   ),
+                            // ],
+                            //   gradient: LinearGradient(
+                            //     colors: [ cardColor.withAlpha(80),cardColor],
+                            //     // Color(0xFF034dc7)]
+                            //     begin: Alignment.topCenter,
+                            //     end: Alignment.bottomCenter,
+                            //   ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Stack(
                             children: [
-                              SizedBox(
-                                width:
-                                MediaQuery.of(context).size.width /
-                                    2.5,
-                                child: Text(
-                                  head,
-                                  style: GoogleFonts.inter(
-                                    textStyle: const TextStyle(
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.white,
-                                      fontSize: 25,
-                                    ),
-                                  ),
-                                ),
-                              ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(5),
-                                    child: CachedNetworkImage(
-                                      imageUrl: img,
-                                      fit: BoxFit.contain,
-                                      progressIndicatorBuilder:
-                                          (context, url,
-                                          downloadProgress) =>
-                                          CircularProgressIndicator(
-                                              value:
-                                              downloadProgress
-                                                  .progress),
-                                      errorWidget:
-                                          (context, url, error) =>
-                                      const Icon(Icons.error),
-                                    )
-                                  // child: Image.network(img,
-                                  //     fit: BoxFit.contain),
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 12,
+                                  // bottom: 20,
+                                  // top: 12,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Text(
+                                          head,
+                                          style: TextStyle(
+                                            color: cardTextColor,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.w900,
+                                          ),
+                                        ),
+
+                                        // SizedBox(height: 20,),
+                                        subtitle=="" ?Text(
+                                          "Only Sinhalese Medium",
+                                          style: TextStyle(
+                                            color: cardTextColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ):Text(
+                                          subtitle,
+                                          style: TextStyle(
+                                            color: cardTextColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width: 20,),
+                                    Icon(
+                                      cardIcon, // Using different icon based on index
+                                      size: 70,
+                                      color: cardTextColor,
+                                    ),
+                                  ],
                                 ),
                               ),
+                              // A/L text
+                              // Positioned(
+                              //   top: 30,
+                              //   left: 20,
+                              //   child: Text(
+                              //     head,
+                              //     style: TextStyle(
+                              //       color:  cardTextColor,
+                              //       fontSize: 30,
+                              //       fontWeight: FontWeight.w900,
+                              //     ),
+                              //   ),
+                              // ),
+                              // Spiral graphic placeholder
+                              // Positioned(
+                              //   top: 70,
+                              //   left: 270,
+                              //   child: Container(
+                              //     // child: Icon(
+                              //     //   cardIcon, // Using different icon based on index
+                              //     //   size: 70,
+                              //     //   color: cardTextColor,
+                              //     // ),
+                              //   ),
+                              // ),
+                              // "Believe in yourself" text
+                              // Positioned(
+                              //   bottom: 30,
+                              //   left: 20,
+                              //   child: Text(
+                              //     "Believe in yourself",
+                              //     style: TextStyle(
+                              //       color: cardTextColor,
+                              //       fontSize: 15,
+                              //       fontWeight: FontWeight.w600,
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        ],
-      ),
-    ):Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-         child: Lottie.asset("assets/bh.json"),
-      ),
-    );
+              ],
+            ),
+          )
+        : Scaffold(
+            backgroundColor: Color(0xfffef5ec),
+            body: Center(
+              child: Lottie.asset("assets/bh.json"),
+            ),
+          );
   }
 }

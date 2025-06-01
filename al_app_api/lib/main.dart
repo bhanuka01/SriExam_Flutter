@@ -1,4 +1,5 @@
 // import 'package:device_preview/device_preview.dart';
+import 'package:al_app_api/screen/about.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
@@ -8,6 +9,9 @@ import 'screen/homeScreen.dart';
 
 void main() async {
   // var device1 = ["23DF511880E18E0B330AD848B1546BB5"];
+  // await URLInfo.version1;
+  // String version = await AppVersion.version;
+  // print(version);
   WidgetsFlutterBinding.ensureInitialized();
   await MobileAds.instance.initialize();
 

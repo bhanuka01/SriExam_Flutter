@@ -19,7 +19,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       
       body: SafeArea(
         child: const PDF(
@@ -112,7 +112,8 @@ class _PdfViewPageState extends State<PdfViewPage> {
           //   text: 'Go download or document folder',
           // );
         },
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         child: const Icon(Icons.download),
       ),
     );

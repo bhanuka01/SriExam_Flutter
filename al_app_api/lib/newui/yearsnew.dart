@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:al_app_api/newui/pdfnew.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:page_transition/page_transition.dart';
+
+import '../admob/admob.dart';
 
 class Yearsnew extends StatefulWidget {
   final String url1;
@@ -41,7 +44,7 @@ class _YearsnewState extends State<Yearsnew> {
     super.initState();
     fetchdata();
     // initbannerad();
-    // _loadInterstitialAd();
+    _loadInterstitialAd();
 
     if (!isDataLoaded) {
       Timer.periodic(const Duration(seconds: 3), (timer) {
@@ -55,15 +58,40 @@ class _YearsnewState extends State<Yearsnew> {
     }
   }
 
+  late InterstitialAd _interstitialAd;
+  bool _isAdLoaded = false;
+  void _loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          _interstitialAd = ad;
+          setState(() => _isAdLoaded = true);
+          _interstitialAd.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) => _disposeAd(),
+            onAdFailedToShowFullScreenContent: (ad, err) => _disposeAd(),
+          );
+        },
+        onAdFailedToLoad: (error) => _disposeAd(),
+      ),
+    );
+  }
+  void _disposeAd() {
+    _interstitialAd.dispose();
+    setState(() => _isAdLoaded = false);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return isDataLoaded
         ? Scaffold(
             appBar: AppBar(
-              foregroundColor: Colors.black,
+              foregroundColor: Color(0xff464743),
               title: Text(
                 users[0]['title'],
-                style: GoogleFonts.rosario(
+                style: GoogleFonts.inter(
                   textStyle: const TextStyle(
                     fontWeight: FontWeight.w900,
                     // color: Colors.white,
@@ -71,9 +99,9 @@ class _YearsnewState extends State<Yearsnew> {
                   ),
                 ),
               ),
-              backgroundColor: Colors.white,
+              backgroundColor:Color(0xfffef5ec),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Color(0xfffef5ec),
             body: ListView(
               children: [
                 ListView.builder(
@@ -88,6 +116,38 @@ class _YearsnewState extends State<Yearsnew> {
                     final url1 = user['url'];
                     final paper = user['paper'];
                     final marking = user['marking'];
+
+                    // final colors = [
+                    //   Color.fromARGB(255, 18, 58, 255),
+                    //   Colors.greenAccent,
+                    //   Colors.orangeAccent,
+                    //   Colors.purpleAccent,
+                    //   Colors.redAccent,
+                    //   // Add more colors as needed
+                    // ];
+                    final colors = [
+                      Color(0xffdae1eb),
+                      Color(0xffdde2db),
+                      Color(0xffded2e0),
+                      Color(0xfff5dfc7),
+
+                      Color(0xfff5cec7),
+                      // Add more colors as needed
+                    ];
+                    final textColor = [
+                      Color(0xff6782af),
+                      Color(0xff6b8e7d),
+                      Color(0xff85779a),
+                      Color(0xffd69958),
+
+                      Color(0xffdc7966),
+                      // Add more colors as needed
+                    ];
+                    final colorIndex = index % colors.length;
+                    final cardColor = colors[colorIndex];
+                    final  textColorIndex = index % textColor.length;
+                    final cardtextColor = textColor[colorIndex];
+
                     return ListTile(
                       title: Column(
                         children: [
@@ -105,34 +165,39 @@ class _YearsnewState extends State<Yearsnew> {
                                     ),
                                   ).then((_) {
                                     // .then() executes after returning from Booknew
-                                    // if (isloadfull) {
-                                    //   interstitialAd.show();
-                                    //   isloadfull =
-                                    //       false; // Reset the flag to prevent multiple ad shows
-                                    // } else {
-                                    //   print("Interstitial ad not loaded yet");
-                                    // }
+                                    if (_isAdLoaded) {
+                                      _interstitialAd.show();
+                                      _isAdLoaded =
+                                          false; // Reset the flag to prevent multiple ad shows
+                                    } else {
+                                      print("Interstitial ad not loaded yet");
+                                    }
                                   });
                                 },
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width / 2.5,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blueAccent,
-                                      width: 2,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(7.0)),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      subtitle,
-                                      // textAlign: TextAlign.start,
-                                      style: GoogleFonts.notoSerifSinhala(
-                                        textStyle: const TextStyle(
-                                          fontWeight: FontWeight.w900,
-                                          color: Colors.blueAccent,
-                                          fontSize:25,
+                                child: ClipRRect(
+                                  borderRadius:BorderRadius.circular(10) ,
+                                  child: Container(
+                                      color: cardColor.withOpacity(0.6),
+                                    width: MediaQuery.of(context).size.width / 2.5,
+                                    height: MediaQuery.of(context).size.height / 15,
+                                    // decoration: BoxDecoration(
+                                    //   border: Border.all(
+                                    //     color: cardColor,
+                                    //     width: 2,
+                                    //   ),
+                                    //   borderRadius: const BorderRadius.all(
+                                    //       Radius.circular(7.0)),
+                                    // ),
+                                    child: Center(
+                                      child: Text(
+                                        subtitle,
+                                        // textAlign: TextAlign.start,
+                                        style: GoogleFonts.inter(
+                                          textStyle: TextStyle(
+                                            fontWeight: FontWeight.w900,
+                                            color: cardtextColor,
+                                            fontSize:25,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -162,25 +227,30 @@ class _YearsnewState extends State<Yearsnew> {
                                     // }
                                   });
                                 },
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width / 2.5,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.blueAccent,
-                                      width: 2,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(7.0)),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      head,
-                                      overflow: TextOverflow.fade,
-                                      style: GoogleFonts.notoSerifSinhala(
-                                        textStyle: const TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black,
-                                          fontSize: 25,
+                                child: ClipRRect(
+                                  borderRadius:BorderRadius.circular(10) ,
+                                  child: Container(
+                                    color: cardColor.withOpacity(0.4),
+                                    width: MediaQuery.of(context).size.width / 2.5,
+                                    height: MediaQuery.of(context).size.height / 15,
+                                    // decoration: BoxDecoration(
+                                    //   border: Border.all(
+                                    //     color: cardColor,
+                                    //     width: 2,
+                                    //   ),
+                                    //   borderRadius: const BorderRadius.all(
+                                    //       Radius.circular(7.0)),
+                                    // ),
+                                    child: Center(
+                                      child: Text(
+                                        head.toUpperCase(),
+                                        overflow: TextOverflow.fade,
+                                        style: GoogleFonts.inter(
+                                          textStyle: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            color: cardtextColor,
+                                            fontSize: 25,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -198,7 +268,7 @@ class _YearsnewState extends State<Yearsnew> {
             ),
           )
         : Scaffold(
-            backgroundColor: Colors.white,
+            backgroundColor: Color(0xfffef5ec),
             body: Center(
               child: Lottie.asset("assets/bh.json"),
             ),

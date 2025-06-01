@@ -6,10 +6,15 @@ import 'package:flutter/material.dart';
 
 // import '../flutterflow/flutter_flow_theme.dart';
 import '../model.dart/Home/picLink.dart';
+
+
+
 // String url ='';
 class URLInfo{
   static const String web="https://bhanu.eu.org/";
   static const String email="mailto:bhanukadilshan2002@gmail.com?subject=SriExam_Issues&body=.";
+  static const String version="2.5.0";
+
 }
 class AboutMe extends StatelessWidget {
   const AboutMe({super.key});
@@ -18,10 +23,12 @@ class AboutMe extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-  Color aboutColor=Colors.white;
-  Color aboutIcon=Colors.grey;
+  Color aboutColor=Color(0xff464743);
+  Color cards=Color(0xffdae1eb);
+  Color aboutIcon=aboutColor;
     return Scaffold(
-      backgroundColor: const Color(0xff020d32),
+
+      backgroundColor: const Color(0xfffef5ec),
       body: SafeArea(
         top: true,
         child: Column(
@@ -85,7 +92,7 @@ class AboutMe extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 1.08,
                         height: 74,
                         decoration: BoxDecoration(
-                          color: const Color(0x5B000000),
+                          color: cards,
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Row(
@@ -168,7 +175,7 @@ class AboutMe extends StatelessWidget {
                         width: MediaQuery.of(context).size.width / 1.08,
                         height: 74,
                         decoration: BoxDecoration(
-                          color: const Color(0x5B000000),
+                          color:cards,
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Row(
@@ -238,7 +245,7 @@ class AboutMe extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.08,
                   height: 74,
                   decoration: BoxDecoration(
-                    color: const Color(0x5B000000),
+                    color: cards,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Row(
@@ -304,7 +311,7 @@ class AboutMe extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.08,
                   height: 74,
                   decoration: BoxDecoration(
-                    color: const Color(0x5B000000),
+                    color: cards,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Row(
@@ -376,7 +383,7 @@ class AboutMe extends StatelessWidget {
                   width: MediaQuery.of(context).size.width / 1.08,
                   height: 74,
                   decoration: BoxDecoration(
-                    color: const Color(0x5B000000),
+                    color: cards,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Row(
@@ -419,7 +426,7 @@ class AboutMe extends StatelessWidget {
                           padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                           child: Text(
-                            '2.0',
+                            URLInfo.version,
                             style: GoogleFonts.inter(
 
                               fontSize: 14,
